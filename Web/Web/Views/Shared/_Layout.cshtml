@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Aris Palace</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <header class="site-header">
+        <h1 class="logo">Aris Palace</h1>
+    </header>
+    <nav class="menu">
+        <a asp-controller="Home" asp-action="Index">Domů</a>
+        <a asp-controller="Home" asp-action="Menu">Menu</a>
+        <a asp-controller="Home" asp-action="kontakt">Kontakt</a>
+    </nav>
+    <main>
+        @RenderBody()
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2026 Aris Palace</p>
+        <div class="social-links">
+            <a href="https://instagram.com" target="_blank">Instagram</a>
+            <a href="https://facebook.com" target="_blank">Facebook</a>
+        </div>
+    </footer>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
