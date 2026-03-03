@@ -48,6 +48,45 @@ body {
     letter-spacing: 3px;
 }
 
+.site-header {
+    position: relative;
+}
+
+.account-btn {
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+}
+
+.auth-buttons {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    display: flex;
+    gap: 10px;
+}
+
+.auth-btn {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px;
+    border: 2px solid #fff;
+    border-radius: 5px;
+    font-size: 0.95rem;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+    .auth-btn:hover {
+        background-color: #fff;
+        color: #333;
+    }
+
+.register-btn {
+    background-color: #555;
+}
+
 .menu {
     display: flex;
     justify-content: center;
@@ -288,3 +327,67 @@ body {
         aspect-ratio: 3/4;
         border-radius: 8px;
     }
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+    .form-group label {
+        display: block;
+        color: #333;
+        font-size: 1.1rem;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+
+    .form-group input {
+        width: 100%;
+        padding: 10px 12px;
+        font-size: 1rem;
+        border: 2px solid #333;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #555;
+        }
+
+.form-btn {
+    display: inline-block;
+    background-color: #333;
+    color: #fff;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+    .form-btn:hover {
+        background-color: #555;
+    }
+
+.chyba {
+    color: #d32f2f;
+    background-color: #fde8e8;
+    border: 2px solid #d32f2f;
+    border-radius: 5px;
+    padding: 10px 15px;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.uspech {
+    color: #2e7d32;
+    background-color: #e8f5e9;
+    border: 2px solid #2e7d32;
+    border-radius: 5px;
+    padding: 10px 15px;
+    margin-bottom: 15px;
+    font-weight: bold;
+}

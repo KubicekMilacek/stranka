@@ -1,0 +1,23 @@
+@{
+    ViewData["Title"] = "Můj účet";
+}
+
+<h1 class="h1">Můj účet</h1>
+
+<section class="contact-section">
+    <div class="contact-box wide">
+        <h2>Vítejte, @User.Identity?.Name!</h2>
+        <p>Jste úspěšně přihlášeni jako <strong>@User.Identity?.Name</strong>.</p>
+    </div>
+
+    <div class="contact-box">
+        <h2>Moje rezervace</h2>
+        <p>Zatím nemáte žádné rezervace.</p>
+    </div>
+
+    <div class="contact-box">
+        <h2>Možnosti</h2>
+        <p><a asp-controller="Home" asp-action="Odhlasit" class="form-btn">Odhlásit se</a></p>
+        <p><a asp-controller="Home" asp-action="Index">Zpět na hlavní stránku</a></p>
+    </div>
+</section>

@@ -8,7 +8,26 @@
 </head>
 <body>
     <header class="site-header">
+        @if (User.Identity?.IsAuthenticated ?? false)
+        {
+            <a asp-controller="Home" asp-action="MujUcet" class="auth-btn account-btn">@User.Identity?.Name</a>
+        }
+        else
+        {
+            <a asp-controller="Home" asp-action="MujUcet" class="auth-btn account-btn">Můj účet</a>
+        }
         <h1 class="logo">Aris Palace</h1>
+        <div class="auth-buttons">
+            @if (User.Identity?.IsAuthenticated ?? false)
+            {
+                <a asp-controller="Home" asp-action="Odhlasit" class="auth-btn login-btn">Odhlásit</a>
+            }
+            else
+            {
+                <a asp-controller="Home" asp-action="Prihlaseni" class="auth-btn login-btn">Přihlášení</a>
+                <a asp-controller="Home" asp-action="Registrace" class="auth-btn register-btn">Registrace</a>
+            }
+        </div>
     </header>
     <nav class="menu">
         <a asp-controller="Home" asp-action="Index">Domů</a>

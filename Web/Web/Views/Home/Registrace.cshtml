@@ -1,0 +1,31 @@
+@{
+    ViewData["Title"] = "Registrace";
+}
+
+<h1 class="h1">Registrace</h1>
+
+<section class="contact-section">
+    <div class="contact-box wide">
+        <h2>Vytvořte si účet</h2>
+        @if (ViewBag.Chyba != null)
+        {
+            <p class="chyba">@ViewBag.Chyba</p>
+        }
+        <form method="post" asp-controller="Home" asp-action="Registrace">
+            <div class="form-group">
+                <label for="jmeno">Jméno</label>
+                <input type="text" id="jmeno" name="jmeno" required />
+            </div>
+            <div class="form-group">
+                <label for="heslo">Heslo</label>
+                <input type="password" id="heslo" name="heslo" required />
+            </div>
+            <div class="form-group">
+                <label for="hesloZnovu">Heslo znovu</label>
+                <input type="password" id="hesloZnovu" name="hesloZnovu" required />
+            </div>
+            <button type="submit" class="form-btn">Registrovat se</button>
+        </form>
+        <p>Již máte účet? <a asp-controller="Home" asp-action="Prihlaseni">Přihlaste se</a></p>
+    </div>
+</section>
