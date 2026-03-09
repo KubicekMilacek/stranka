@@ -2,13 +2,20 @@ using System.Diagnostics;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Web.Data;
 using Web.Models;
 
 namespace Web.Controllers
 {
     public class HomeController : Controller
     {
-        private static readonly List<Uzivatel> Uzivatele = new();
+        private readonly AppDbContext _db;
+
+        public HomeController(AppDbContext db)
+        {
+            _db = db;
+        }
 
         public IActionResult Index()
         {
@@ -37,7 +44,7 @@ namespace Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult Registrace(string jmeno, string heslo, string hesloZnovu)
+        public async Task<IActionResult> Registrace(string jmeno, string heslo, string hesloZnovu)
         {
             if (string.IsNullOrWhiteSpace(jmeno) || string.IsNullOrWhiteSpace(heslo))
             {
@@ -51,13 +58,15 @@ namespace Web.Controllers
                 return View();
             }
 
-            if (Uzivatele.Any(u => u.Jmeno == jmeno))
+            if (await _db.Uzivatele.AnyAsync(u => u.Jmeno == jmeno))
             {
                 ViewBag.Chyba = "Uživatel s tímto jménem již existuje.";
                 return View();
             }
 
-            Uzivatele.Add(new Uzivatel { Jmeno = jmeno, Heslo = heslo });
+            _db.Uzivatele.Add(new Uzivatel { Jmeno = jmeno, Heslo = heslo });
+            await _db.SaveChangesAsync();
+
             TempData["Uspech"] = "Registrace proběhla úspěšně! Nyní se můžete přihlásit.";
             return RedirectToAction("Prihlaseni");
         }
@@ -77,7 +86,7 @@ namespace Web.Controllers
                 return View();
             }
 
-            var uzivatel = Uzivatele.FirstOrDefault(u => u.Jmeno == jmeno && u.Heslo == heslo);
+            var uzivatel = await _db.Uzivatele.FirstOrDefaultAsync(u => u.Jmeno == jmeno && u.Heslo == heslo);
             if (uzivatel == null)
             {
                 ViewBag.Chyba = "Špatné jméno nebo heslo.";
